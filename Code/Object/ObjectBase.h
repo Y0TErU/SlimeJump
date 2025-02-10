@@ -7,12 +7,13 @@ public:
 	{
 	}
 
-	ObjectBase(int pos_x_,int pos_y_) : 
-		posX{ pos_x_ },posY{pos_y_}
+	ObjectBase(float pos_x_,float pos_y_,float width_,float height_) : 
+		posX{ pos_x_ },posY{pos_y_},
+		width{width_},height{height_}
 	{
 	}
 
-public:	
+public:
 	virtual void Update() = 0;	//çXêV
 	virtual void Draw() = 0;	//ï`âÊ
 
@@ -22,28 +23,36 @@ public:
 	{
 		isActive = isActive_;
 	}
+
 	bool IsActive()
 	{
 		return isActive;
 	}
 
-	int GetPosX()
+	float GetPosX()
 	{
 		return posX;
 	}
 
-	int GetPosY()
+	float GetPosY()
 	{
 		return posY;
 	}
 
+	void SetPosX(float pos_x_)
+	{
+		posX = pos_x_;
+	}
+
+	void SetPosY(float pos_y_)
+	{
+		posY = pos_y_;
+	}
 
 private:
-	int posX{ 0 };
-	int posY{ 0 };
-	float vecX{ 0.0f };
-	float vecY{ 0.0f };
-	bool isActive{true};
-
-	const float gravity{ 9.8f };	//èdóÕ
+	float posX{ 0 };
+	float posY{ 0 };
+	float width{};
+	float height{};
+	bool isActive{ true };
 };
