@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "../ObjectBase.h"
 
 class Map : public ObjectBase
@@ -16,17 +18,14 @@ public:
 
 public:
 	void LoadMapLayout();		//マップチップの読込（外部ファイルより）
-	int GetMapChipID()
-	{
-		return mapLayout;
-	}
+
 	
 	bool ToRectObjectX(int min_x_, int max_x_);	//オブジェクトと当たったかどうか（X座標）
 
 	bool ToRectObjectY(int min_y_,int max_y_);	//オブジェクトと当たったかどうか（Y座標）
 
 private:
-	int mapLayout;
+	std::vector<int> mapLayout{};
 
 	int textureHandle{ -1 };
 
