@@ -23,29 +23,41 @@ void Map::LoadMapLayout()
 
 	if (fp == nullptr)
 	{
+		//ファイル読み込み失敗
 		return;
 	}
 
 	int result = 0;
-	int value = 0;
 	int row = 0;
 	int collum = 0;
 	char numBuffer[32];
 	char separatorBuffer[32];
 
-	while (true)
+	while (!feof(fp))
 	{
-		result = fscanf_s(fp, "%[^,^'\n'^'\r']%[,'\n''\r']", &numBuffer, 32, &separatorBuffer, 4);
+		result = fscanf_s(fp, "%[^,^'\n'^'\r']%[,'\n''\r']", numBuffer, (unsigned int)sizeof(numBuffer), separatorBuffer, (unsigned int)sizeof(separatorBuffer));
 		
-		if (result == 2)
+		if (result != 2)
 		{
-			value = atoi(numBuffer);
+			break;
+		}
 
-			mapLayout[w][h]
+		char* endPtr;
+		int value = strtol(numBuffer, &endPtr, 10);
+
+		if (*endPtr == '\0') // 変換成功時のみ追加
+		{
+			mapLayout.push_back(value);
+		}
+
+		if (separatorBuffer[0] == '\n' || separatorBuffer[0] == '\r')
+		{
+			// 次の行に移動したことを記録できる
 		}
 
 	}
 
+	fclose(fp);
 
 }
 

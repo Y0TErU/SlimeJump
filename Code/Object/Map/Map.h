@@ -18,7 +18,6 @@ public:
 
 public:
 	void LoadMapLayout();		//マップチップの読込（外部ファイルより）
-
 	
 	bool ToRectObjectX(int min_x_, int max_x_);	//オブジェクトと当たったかどうか（X座標）
 
