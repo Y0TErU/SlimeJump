@@ -28,5 +28,4 @@ private:
 
 	int textureHandle{ -1 };
 
-	
 };
